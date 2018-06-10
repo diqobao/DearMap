@@ -70,6 +70,8 @@ public class GraphBuildingHandler extends DefaultHandler {
 
             /* TODO Use the above information to save a "node" to somewhere. */
             /* Hint: A graph-like structure would be nice. */
+            GraphDB.Node n = new GraphDB.Node(attributes.getValue("id"),attributes.getValue("lat"),
+                                                attributes.getValue("lon"));
 
         } else if (qName.equals("way")) {
             /* We encountered a new <way...> tag. */
