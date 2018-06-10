@@ -6,6 +6,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Graph for storing all of the intersection (vertex) and road (edge) information.
@@ -25,6 +26,8 @@ public class GraphDB {
      * You do not need to modify this constructor, but you're welcome to do so.
      * @param dbPath Path to the XML file to be parsed.
      */
+    HashMap<Long, Node> nodes = new HashMap<>();
+
     public GraphDB(String dbPath) {
         try {
             File inputFile = new File(dbPath);
@@ -87,4 +90,60 @@ public class GraphDB {
     double lat(long v) {
         return 0;
     }
+
+    /**
+     * Node which comprises the backbone of the map
+     */
+    public static class Node {
+        Vertix head;
+        private Vertix tail;
+        private double latitude;
+        private double longitude;
+
+        public Node(String n, String lat, String lon){
+            this.head = new Vertix(Long.parseLong(n));
+            this.tail = this.head;
+            this.latitude = Double.parseDouble(lat);
+            this.longitude = Double.parseDouble(lon);
+        }
+
+        public void insert_adj(long n, double dist){
+            this.tail.next = new Vertix(n, dist);
+        }
+
+        /** latitude of this node **/
+        public double lat(){
+            return this.latitude;
+        }
+
+        /** longitude of this node **/
+        public double lon(){
+            return this.longitude;
+        }
+
+        public class Vertix{
+            private long name;
+            private double distance;
+            Vertix next;
+
+            public Vertix(long n){
+                this.name = n;
+                this.distance = 0;
+            }
+
+            public Vertix(long n, double dist){
+                this.name = n;
+                this.distance = dist;
+            }
+
+            public long name(){
+                return this.name;
+            }
+            /** distance of this vertix between main vertix **/
+            public double distance(){
+                return this.distance;
+            }
+        }
+    }
+
 }
