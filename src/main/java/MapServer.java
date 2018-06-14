@@ -278,9 +278,7 @@ public class MapServer {
      * @return A <code>List</code> of the full names of locations whose cleaned name matches the
      * cleaned <code>prefix</code>.
      */
-    public static List<String> getLocationsByPrefix(String prefix) {
-        return new LinkedList<>();
-    }
+    public static List<String> getLocationsByPrefix(String prefix) { return graph.findlocationbyprefix(prefix); }
 
     /**
      * Collect all locations that match a cleaned <code>locationName</code>, and return
