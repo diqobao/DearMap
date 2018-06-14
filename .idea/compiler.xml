@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="proj3" />
+<<<<<<< HEAD
         <module name="proj3 (2)" />
       </profile>
     </annotationProcessing>
@@ -14,6 +15,13 @@
       <module name="proj3" target="1.8" />
       <module name="proj3 (1)" target="1.8" />
       <module name="proj3 (2)" target="1.8" />
+=======
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="proj3" target="1.8" />
+      <module name="proj3 (1)" target="1.5" />
+>>>>>>> 50e6a263caf6373d5ca8c6acd1d1923ab9836eba
     </bytecodeTargetLevel>
   </component>
 </project>
