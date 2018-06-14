@@ -1,3 +1,4 @@
 img
 p3imgs.zip
-.xml
+*.xml
+*.iml
