@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -14,6 +15,28 @@ public class Router {
      * where the longs are node IDs.
      */
     public static LinkedList<Long> shortestPath(GraphDB g, double stlon, double stlat, double destlon, double destlat) {
+        long start = g.closest(stlon, stlat), destination = g.closest(destlon, destlat), last = start;
+        LinkedList<Long> route = new LinkedList<Long>();
+        double shortest;
+        int count = 0, max_count = 999999999; //TODO: initialize max_count with g.node_number
+        while(count < max_count){
+            Iterable<Long> neighbors= g.adjacent(start);
+            long shortestNode = 0;
+            shortest = 99999999; // TODO: smarter approach?
+            for(long neighbor: neighbors){
+                if(g.distance(neighbor, destination) + g.distance(neighbor, last) < shortest){
+                    shortest = g.distance(neighbor, destination) + g.distance(neighbor, last);
+                    shortestNode = neighbor;
+                }
+                if(neighbor == destination) {
+                    route.add(neighbor);
+                    return route;
+                }
+            }
+            route.add(shortestNode);
+            last = shortestNode;
+            count ++;
+        }
         return new LinkedList<Long>();
     }
 }
